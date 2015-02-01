@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 
+TOKEN_HASH = "21bf9e05-fb23-4b1d-b89a-398f671f5999"
 
 def download(cardnum, path)
     card_url = "http://netrunnerdb.com/web/bundles/netrunnerdbcards/images/cards/en/#{cardnum}.png"
@@ -13,6 +14,21 @@ end
 #cardnum = ARGV[0]
 #path = ARGV[1]
 #download(cardnum, path)
+
+def download_all_cards()
+	Dir.chdir("/cygdrive/c/Users/jeff/Documents/OCTGN/GameDatabase/0f38e453-26df-4c04-9d67-6d43de939c77/Sets/")
+	subdir_list=Dir["*/"]
+	subdir_list.map! {|x| x.sub("/", "")}
+	subdir_list.delete(TOKEN_HASH)
+	puts subdir_list
+
+	progress = 1
+	subdir_list.each do |hsh|
+		puts "### PROGRESS: #{progress}/#{subdir_list.size} ###"
+		get_all_for_set(hsh)
+		progress += 1
+	end
+end
 
 def get_all_for_set(set_hash)
 	puts "get_all_for_set: #{set_hash}"
@@ -37,17 +53,4 @@ if input == nil
 	exit(0)
 end
 
-TOKEN_HASH = "21bf9e05-fb23-4b1d-b89a-398f671f5999"
-
-Dir.chdir("/cygdrive/c/Users/jeff/Documents/OCTGN/GameDatabase/0f38e453-26df-4c04-9d67-6d43de939c77/Sets/")
-subdir_list=Dir["*/"]
-subdir_list.map! {|x| x.sub("/", "")}
-subdir_list.delete(TOKEN_HASH)
-puts subdir_list
-
-progress = 1
-subdir_list.each do |hsh|
-	puts "### PROGRESS: #{progress}/#{subdir_list.size} ###"
-	get_all_for_set(hsh)
-	progress += 1
-end
+get_all_for_set(input)
