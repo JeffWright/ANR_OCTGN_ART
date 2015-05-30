@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 
 TOKEN_HASH = "21bf9e05-fb23-4b1d-b89a-398f671f5999"
+OCTGN_DIR = "/cygdrive/c/Users/Administrator/Documents/OCTGN"
 
 def download(cardnum, path)
     card_url = "http://netrunnerdb.com/web/bundles/netrunnerdbcards/images/cards/en/#{cardnum}.png"
@@ -16,7 +17,7 @@ end
 #download(cardnum, path)
 
 def download_all_cards()
-	Dir.chdir("/cygdrive/c/Users/jeff/Documents/OCTGN/GameDatabase/0f38e453-26df-4c04-9d67-6d43de939c77/Sets/")
+	Dir.chdir("#{OCTGN_DIR}/GameDatabase/0f38e453-26df-4c04-9d67-6d43de939c77/Sets/")
 	subdir_list=Dir["*/"]
 	subdir_list.map! {|x| x.sub("/", "")}
 	subdir_list.delete(TOKEN_HASH)
@@ -32,8 +33,8 @@ end
 
 def get_all_for_set(set_hash)
 	puts "get_all_for_set: #{set_hash}"
-	card_info_xml = "/cygdrive/c/Users/jeff/Documents/OCTGN/GameDatabase/0f38e453-26df-4c04-9d67-6d43de939c77/Sets/#{set_hash}/set.xml"
-	card_images_directory = "/cygdrive/c/Users/jeff/Documents/OCTGN/ImageDatabase/0f38e453-26df-4c04-9d67-6d43de939c77/Sets/#{set_hash}/Cards"
+	card_info_xml = "#{OCTGN_DIR}/GameDatabase/0f38e453-26df-4c04-9d67-6d43de939c77/Sets/#{set_hash}/set.xml"
+	card_images_directory = "#{OCTGN_DIR}/ImageDatabase/0f38e453-26df-4c04-9d67-6d43de939c77/Sets/#{set_hash}/Cards"
 
 	system("rm " + card_images_directory + "/*")
 
