@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 TOKEN_HASH = "21bf9e05-fb23-4b1d-b89a-398f671f5999"
-OCTGN_DIR = "/cygdrive/c/Users/Administrator/Documents/OCTGN"
+OCTGN_DIR = "/cygdrive/c/Users/Jeff/Documents/OCTGN"
 
 def download(cardnum, path)
     card_url = "http://netrunnerdb.com/web/bundles/netrunnerdbcards/images/cards/en/#{cardnum}.png"
