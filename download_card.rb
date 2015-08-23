@@ -1,10 +1,18 @@
 #!/usr/bin/ruby
 
+
+
+def get_octgn_dir
+    curdir = Dir.pwd
+    return curdir[0..curdir.index("OCTGN")+4]
+end
+
 TOKEN_HASH = "21bf9e05-fb23-4b1d-b89a-398f671f5999"
-OCTGN_DIR = "/cygdrive/c/Users/Jeff/Documents/OCTGN"
+OCTGN_DIR = get_octgn_dir()
+IMAGE_DATABASE = get_octgn_dir() + "/ImageDatabase/0f38e453-26df-4c04-9d67-6d43de939c77/Sets/"
 
 def download(cardnum, path)
-    card_url = "http://netrunnerdb.com/web/bundles/netrunnerdbcards/images/cards/en/#{cardnum}.png"
+    card_url = "http://netrunnerdb.com/bundles/netrunnerdbcards/images/cards/en/#{cardnum}.png"
     download_command = "curl #{card_url} -o #{path}"
     puts "downloading #{card_url}"
     puts download_command
